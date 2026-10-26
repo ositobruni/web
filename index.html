@@ -69,27 +69,4 @@
 </main>
 <footer><div class="wrap"><b>Bruni y las palabras</b><br>© 2026 Bruni y las palabras. Todos los derechos reservados.<br>
 <a href="#aviso-legal">Aviso legal</a><a href="#privacidad">Privacidad</a><a href="#condiciones">Condiciones de venta</a></div></footer>
-<script>
-// =============== CONFIGURACIÓN (solo tienes que tocar esto) ===============
-const CONFIG = {
-  amazonUrl: "",                 // enlace del libro en Amazon (cuando esté publicado)
-  paypalBase: "https://www.paypal.com/ncp/payment/",
-  paypalIds: {                   // pega aquí el ID de cada enlace/botón de pago de PayPal (lo que va tras /ncp/payment/)
-    1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: ""
-  }
-};
-// ===========================================================================
-const amazon = document.getElementById("amazon"), note = document.getElementById("amazonNote");
-if (CONFIG.amazonUrl) { amazon.href = CONFIG.amazonUrl; }
-else { amazon.textContent = "Próximamente en Amazon"; amazon.setAttribute("aria-disabled", "true"); amazon.addEventListener("click", e => e.preventDefault()); note.textContent = "El libro está pendiente de publicación en Amazon."; }
-const consent = document.getElementById("consent"), msg = document.getElementById("msg");
-document.querySelectorAll(".buy").forEach(btn => {
-  const id = CONFIG.paypalIds[btn.dataset.id];
-  if (!id) { btn.textContent = "Próximamente"; btn.disabled = true; return; }
-  btn.addEventListener("click", () => {
-    if (!consent.checked) { msg.textContent = "Marca la casilla de aceptación antes de comprar."; consent.focus(); return; }
-    msg.textContent = ""; window.open(CONFIG.paypalBase + encodeURIComponent(id), "_blank", "noopener");
-  });
-});
-consent.addEventListener("change", () => { if (consent.checked) msg.textContent = ""; });
-</script></body></html>
+</body></html>
